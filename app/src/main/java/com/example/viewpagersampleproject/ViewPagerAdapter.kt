@@ -7,11 +7,18 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int {
-        return NUM_PAGES
+//        return NUM_PAGES
+
+        // For endless viewpager
+        return Int.MAX_VALUE
     }
 
     override fun createFragment(position: Int): Fragment {
-        return if (position == 0) FirstFragment() else if (position == 1) SecondFragment() else ThirdFragment()
+//        return if (position == 0) FirstFragment() else if (position == 1) SecondFragment() else ThirdFragment()
+
+        // For endless viewpager
+        return if (position % NUM_PAGES == 0) FirstFragment() else if (position % NUM_PAGES == 1) SecondFragment() else ThirdFragment()
+
     }
 
     companion object {
